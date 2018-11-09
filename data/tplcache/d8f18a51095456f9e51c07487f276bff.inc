@@ -1,0 +1,1 @@
+<a href="[field:typelink/]" class="more db"><span>Read more</span></a>

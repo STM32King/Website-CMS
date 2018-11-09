@@ -1,0 +1,34 @@
+<div class="adr_top col-md-12 col-sm-12 col-xs-12">
+  <p class="posnav fl fadeInLeft wow">{dede:field name='typeid' function="GetTopTypename(@me)"/}<span>{dede:field name='typeid' function="GetTopTypenameen(@me)"/}</span></p>
+  <span class="navmore visible-xs"><i class="down">+</i><i class="up">-</i></span> <span class="adress fr hidden-xs">{dede:field name='position'/}</span> </div>
+<div class="mainav_l col-md-3 col-sm-4 col-xs-12">
+  {dede:global.team_intro/}
+</div>
+<script type="text/javascript">
+  jQuery(function () {
+    jQuery('.sub2').hide();
+    jQuery('.sub3').hide();
+    jQuery(".sub1").each(function () {
+      if (jQuery(this).next('.sub2').length > 0) {
+        jQuery(this).find('a').attr('href', "javascript:void(0)");
+      }
+    });
+    jQuery('.sub1').click(function () {
+      jQuery('.sub2').hide();
+      jQuery('.sub3').hide();
+      jQuery(this).nextUntil('.sub1').show();
+    })
+
+    var jcurrent = jQuery('#');
+    var pid = jcurrent.attr("pid");
+    var depth = jcurrent.attr("depth");
+    if (depth == 2) {
+      jQuery("#" + pid).show().nextUntil(".sub1").show();
+    } else if (depth == 3) {
+      var c1id = jQuery("#" + pid).attr('pid');
+      jQuery('#' + c1id).nextUntil(".sub1").show();
+    }
+
+    jcurrent.find('a').addClass("current");
+  })
+</script>

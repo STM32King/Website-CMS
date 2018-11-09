@@ -1,0 +1,46 @@
+<!-- 侧边导航 -->
+
+<div class="class page-prev visible-xs">
+  <h1 class="class-top"><img src="/skin/images/logo.png"><span class="class-close">×</span></h1>
+  <div class="class-m">
+    <ul class="nnav">
+      <li><a href="/" class="ce">网站首页</a></li>
+      {dede:channelartlist typeid='top'}
+      <li class="menu_head"> {dede:field name=typeid runphp="yes"}
+        global $dsql;
+        $sql = "SELECT id From `dede_arctype` WHERE reid='@me' And ishidden<>1 order by sortrank asc limit 0, 100 ";
+        $row = $dsql->GetOne($sql);      
+        @me=is_array($row)?'
+        <dl class="ericon">
+          <span class="icon1">-</span><span class="icon2">+</span>
+        </dl>
+        ':'';
+        {/dede:field} <a href="{dede:field name='typeurl'/}" class="ce">{dede:field name='typename'/}</a>
+        <ul class="menu_body">
+          {dede:channel type='son' noself='yes'}
+          <li><a href='[field:typeurl/]' class="er">[field:typename/]</a></li>
+          {/dede:channel}
+        </ul>
+      </li>
+      {/dede:channelartlist}
+    </ul>
+  </div>
+</div>
+<div class="opacity2"></div>
+<div id="header" class="head">
+  <div class="container">
+    <div class="mol_navbutton visible-xs fl tc"><img src="/skin/images/menu.png"></div>
+    <div class="logo fl"> <a href="/"><img src="/skin/images/logo.png"></a> </div>
+    <div class="collapse navbar-collapse fr">
+      <ul class="nav navbar-nav nav_box">
+        <li id="pindex" {dede:field name=typeid runphp="yes"}(@me=="")? @me=" class='yiji current' ":@me="class='yiji'";{/dede:field}><a href="/">首页</a></li>
+        {dede:channelartlist typeid='top' currentstyle='current'}
+        <li id="pcase" class="yiji {dede:field.currentstyle/}"><a href="{dede:field name='typeurl'/}">{dede:field name='typename'/}</a>
+          <div class="libox"> {dede:channel type='son' noself='yes'} <a href="[field:typeurl/]">[field:typename/]</a> {/dede:channel} </div>
+        </li>
+        {/dede:channelartlist}
+      </ul>
+    </div>
+  </div>
+</div>
+<!----> 

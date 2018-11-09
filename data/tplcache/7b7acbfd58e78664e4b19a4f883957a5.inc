@@ -1,0 +1,1 @@
+<h2 class="title"><i class="zoomInRight wow">[field:typenameen/]</i><span class="fadeInLeft wow">[field:typename/]</span></h2>
